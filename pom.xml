@@ -41,15 +41,14 @@
                         <configuration>
                             <filters>
                                 <filter>
+                                    <artifact>*:*</artifact>
                                     <excludes>
-                                        <exclude>META-INF/**</exclude>
+                                        <exclude>META-INF/</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
-
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
-
                     </execution>
                 </executions>
             </plugin>

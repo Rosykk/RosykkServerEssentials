@@ -56,7 +56,7 @@ public class SetupCommand extends BaseCommand {
         else if (state.equals(State.Type.SETUP)) {
             SetupCommand.plugin.getState().setType(State.Type.NONE);
 
-            Region region = new Region(config.getString("REGION_NAME"));
+            Region region = new Region();
             region.createRegion(player);
 
             player.sendMessage(Util.colorize(config.getString("SETUP_MODE_LEAVE")));

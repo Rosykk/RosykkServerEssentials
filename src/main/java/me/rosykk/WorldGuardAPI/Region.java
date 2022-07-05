@@ -18,22 +18,22 @@ import com.sk89q.worldguard.protection.flags.registry.*;
 
 public class Region
 {
-    private final String regionName;
     private static final Main plugin;
     private final WorldGuard worldGuard;
     private final RegionContainer container;
 
-    public Region(final String regionName) {
+    public Region() {
         this.worldGuard = Region.plugin.getWorldGuard();
         this.container = this.worldGuard.getPlatform().getRegionContainer();
-        this.regionName = regionName;
     }
 
     public void removeRegion(final Player player) {
         World world = BukkitAdapter.adapt(player.getWorld());
         FileConfiguration config = Region.plugin.getConfig();
+
         String regionName = config.getString("REGION_NAME");
         RegionManager regionManager = this.container.get(world);
+
         if (regionManager.getRegion(regionName) == null) {
             player.sendMessage(Util.colorize("&cNeexistuje zadny region k odstraneni!"));
             return;

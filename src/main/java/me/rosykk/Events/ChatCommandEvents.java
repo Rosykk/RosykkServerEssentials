@@ -1,8 +1,11 @@
 package me.rosykk.Events;
 
 import me.rosykk.Main;
+import me.rosykk.Utils.Util;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import java.util.Arrays;
@@ -30,5 +33,15 @@ public class ChatCommandEvents implements Listener {
                 event.setCancelled(true);
             }
         }
+    }
+
+    @EventHandler
+    public void chatStyle(AsyncPlayerChatEvent event) {
+
+        Player player = event.getPlayer();
+        String message = event.getMessage();
+
+        event.setFormat(Util.colorize(player.getName() + " &7» &r" + message.replace("%", "%%")));
+
     }
 }

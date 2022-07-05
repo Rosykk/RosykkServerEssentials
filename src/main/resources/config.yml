@@ -1,0 +1,39 @@
+# -------------------- RefWorldCore --------------------
+# Zde se nachazi veskera konfigurace, vcetne prekladu.
+# Je mozne pouzivat color codes & a nastavit permisse.
+# Promenna {region} = nazev regionu
+
+# ----------------- Jazyk -----------------
+# CommandAPI zpravy
+MESSAGE_CONSOLE_ONLY: "Tenhle prikaz lze pouzit pouze v konzoli!"
+MESSAGE_NOT_ENOUGH_PERMISSIONS: "Na tohle nemas dostatek prav!"
+MESSAGE_PLAYER_ONLY: "Tenhle prikaz nelze pouzit v konzoli!"
+
+# Herni zpravy
+MESSAGE_RELOAD: "Konfigurace byla uspesne znovu nactena."
+MESSAGE_EXCEPTION: "Vyskytla se chyba! Pro vice informaci zkontroluj KONZOLI!"
+MESSAGE_REGION: "&aRegion &2{region} &abyl vytvoren!"
+MESSAGE_POSITION_EMPTY: "&cJeden z bodu (nebo oba) nejsou nastavene! &4/refworld setup!"
+
+DROPS_ACTIVE: "&aDropy Endermanu jsou zapnute!"
+DROPS_INACTIVE: "&cDropy Endermanu jsou vypnute!"
+
+FIRST_POSITION: "&aPrvni pozice nastavena."
+SECOND_POSITION: "&aDruha pozice nastavena."
+
+SETUP_MODE: "&2Setup Mode byl zapnut."
+SETUP_MODE_LEAVE: "&2Setup Mode byl vypnut."
+
+# -------------- Permissions --------------
+PERMISSION_ADMIN: "refworld.admin"
+
+# --------------- Utilities ---------------
+# Jmeno regionu, ktery se bude vytvaret na
+# vybranem miste, resp. na vybrane farme
+REGION_NAME: "test"
+
+# Light Crafting - vypina nebo zapina craft
+# ing recept na item minecraft:light
+# 2x torch, 2x iron nugget - nahodna pozice
+# true - zapnuto, false - vypnuto
+LIGHT_CRAFTING: true

@@ -1,0 +1,6 @@
+name: RosykkServerEssentials
+version: '1.0'
+main: me.rosykk.Main
+api-version: 1.19
+depend: [WorldGuard]
+authors: [Rosykk]

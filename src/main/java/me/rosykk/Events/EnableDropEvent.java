@@ -30,26 +30,32 @@ public class EnableDropEvent implements Listener {
         Player player = event.getPlayer();
         Action action = event.getAction();
 
-        if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.LEVER && action == Action.RIGHT_CLICK_BLOCK) {
+        Block block = event.getClickedBlock();
 
-            ApplicableRegionSet set = this.plugin.getChecks().isInRegion(event.getClickedBlock());
-            State state = this.plugin.getState();
-            State.Type type = this.plugin.getState().getType();
-            FileConfiguration config = this.plugin.getConfig();
+        if (block != null) {
+            Material material = block.getType();
 
-            for (ProtectedRegion region : set) {
-                if (region.getId().equals(config.getString("REGION_NAME"))) {
-                    switch (type) {
-                        case NONE -> {
-                            state.setType(State.Type.DROP);
+            if (material == Material.LEVER && action == Action.RIGHT_CLICK_BLOCK ) {
+
+                ApplicableRegionSet set = this.plugin.getChecks().isInRegion(event.getClickedBlock());
+                FileConfiguration config = this.plugin.getConfig();
+
+                State s = plugin.getState();
+                State.Type state = plugin.getState().getType();
+
+                for (ProtectedRegion region : set) {
+                    if (region.getId().equals(config.getString("REGION_NAME"))) {
+                        if (state == State.Type.NONE) {
+                            s.setType(State.Type.DROP);
 
                             Holograms.removeHologram();
                             Holograms.createHologram("&a\u2714", event.getClickedBlock().getLocation(), player);
 
                             player.sendMessage(Util.colorize(config.getString("DROPS_ACTIVE")));
                         }
-                        case DROP -> {
-                            state.setType(State.Type.NONE);
+
+                        else if (state == State.Type.DROP) {
+                            s.setType(State.Type.NONE);
 
                             Holograms.removeHologram();
                             Holograms.createHologram("&c\u2716", event.getClickedBlock().getLocation(), player);

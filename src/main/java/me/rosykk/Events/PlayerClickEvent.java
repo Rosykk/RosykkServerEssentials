@@ -47,7 +47,8 @@ public class PlayerClickEvent implements Listener {
 
                     player.sendMessage(Util.colorize(config.getString("FIRST_POSITION")));
                 }
-                else if(action.equals(Action.RIGHT_CLICK_BLOCK)) {
+
+                else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
                     event.setCancelled(true);
 
                     Location endLocation = new Location(player.getWorld(), block.getX(), block.getY(), block.getZ());

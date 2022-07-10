@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -69,7 +68,7 @@ public class LightBreakEvent implements Listener {
             @NotNull Material itemStack = player.getInventory().getItemInMainHand().getType();
 
             if (itemStack.equals(Material.LIGHT) && !playerList.contains(player)) {
-                List<Location> lightLoc = getNearbyBlocks(player, 8);
+                HashSet<Location> lightLoc = getNearbyBlocks(player, 8);
 
                 playerList.add(player);
 
@@ -94,8 +93,8 @@ public class LightBreakEvent implements Listener {
     }
 
     // Returns all LIGHT blocks in radius.
-    private static List<Location> getNearbyBlocks(Player player, int radius) {
-        List<Location> blocks = new ArrayList<>();
+    private static HashSet<Location> getNearbyBlocks(Player player, int radius) {
+        HashSet<Location> blocks = new HashSet<>();
 
         for (int x = -radius; x <= radius; ++x) {
             for (int y = -radius; y <= radius; ++y) {

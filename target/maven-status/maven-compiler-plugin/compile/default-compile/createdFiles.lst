@@ -25,7 +25,6 @@ me\rosykk\Utils\Position.class
 me\rosykk\WorldGuardAPI\Region.class
 me\rosykk\Config\ConfigManager.class
 me\rosykk\Utils\CommandAPI\Completer.class
-me\rosykk\Events\EnableDropEvent$1.class
 me\rosykk\Commands\SetupCommand.class
 me\rosykk\Events\ExplodeEvent.class
 me\rosykk\Utils\CommandAPI\CommandArgs.class

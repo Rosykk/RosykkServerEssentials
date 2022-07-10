@@ -42,10 +42,6 @@ public final class Main extends JavaPlugin {
         CustomCraftings.initialize();
     }
 
-    public void onDisable() {
-        Holograms.removeHologram();
-    }
-
     public static Main getInstance() {
         return Main.instance;
     }

@@ -12,8 +12,7 @@ import org.bukkit.*;
 import com.sk89q.worldguard.protection.managers.*;
 import org.bukkit.block.*;
 
-public class RegionChecks
-{
+public class RegionChecks {
     private final Main plugin;
 
     public RegionChecks(final Main plugin) {

@@ -11,23 +11,20 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class SetupCommand extends BaseCommand {
 
-    private static final Main plugin;
-
-    static {
-        plugin = Main.getInstance();
-    }
+    private static final Main plugin = Main.getInstance();
 
     @Command(name = "rcore.setup", isAdminOnly = true)
     @Override
     public void onCommand(CommandArgs args) {
 
-        State.Type state = SetupCommand.plugin.getState().getType();
+        State.Type state = plugin.getState().getType();
         FileConfiguration config = SetupCommand.plugin.getConfig();
 
         Player player = args.getPlayer();
@@ -39,10 +36,11 @@ public class SetupCommand extends BaseCommand {
         }
 
         ItemStack wandTool = new ItemStack(Material.DIRT, 1);
-        wandTool.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
 
         ItemMeta wandMeta = wandTool.getItemMeta();
         wandMeta.setDisplayName(Util.colorize("&c&lSetup Tool"));
+        wandMeta.addEnchant(Enchantment.DURABILITY, 1, false);
+        wandMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 
         wandTool.setItemMeta(wandMeta);
 
@@ -58,6 +56,8 @@ public class SetupCommand extends BaseCommand {
 
             Region region = new Region();
             region.createRegion(player);
+
+            pi.remove(wandTool);
 
             player.sendMessage(Util.colorize(config.getString("SETUP_MODE_LEAVE")));
         }

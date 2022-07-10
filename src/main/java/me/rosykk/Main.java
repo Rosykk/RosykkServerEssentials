@@ -10,8 +10,8 @@ import me.rosykk.Commands.*;
 import me.rosykk.CustomItems.*;
 import me.rosykk.Utils.*;
 
-public final class Main extends JavaPlugin
-{
+public final class Main extends JavaPlugin {
+
     private static Main instance;
     private Config cfg;
     private CommandFramework framework;
@@ -20,19 +20,25 @@ public final class Main extends JavaPlugin
     private RegionChecks checks;
 
     public void onEnable() {
-        Main.instance = this;
-        (this.cfg = new Config(this)).loadConfiguration();
-        Util.registerEvents();
+
+        instance = this;
+
+        this.cfg = new Config(this);
+        cfg.loadConfiguration();
+
         this.state = new State(State.Type.NONE);
         this.worldGuard = WorldGuard.getInstance();
         this.checks = new RegionChecks(this);
 
         this.framework = new CommandFramework(this);
-        this.framework.registerCommands(new RefworldCommand());
+        this.framework.registerCommands(new RcoreCommand());
         this.framework.registerCommands(new ReloadCommand());
         this.framework.registerCommands(new SetupCommand());
         this.framework.registerCommands(new RemoveCommand());
         this.framework.registerHelp();
+
+        Util.registerEvents();
+
         CustomCraftings.initialize();
     }
 

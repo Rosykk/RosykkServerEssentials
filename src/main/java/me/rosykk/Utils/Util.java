@@ -3,8 +3,6 @@ package me.rosykk.Utils;
 import me.rosykk.Events.*;
 import me.rosykk.Main;
 import org.bukkit.ChatColor;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
 public class Util {
     private static final Main plugin;
@@ -20,6 +18,7 @@ public class Util {
         plugin.getServer().getPluginManager().registerEvents(new LightBreakEvent(plugin), plugin);
         plugin.getServer().getPluginManager().registerEvents(new BedEnterLeaveEvent(plugin), plugin);
         plugin.getServer().getPluginManager().registerEvents(new ChatCommandEvents(plugin), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new ExplodeEvent(plugin), plugin);
     }
 
     public static String colorize(final String message) {

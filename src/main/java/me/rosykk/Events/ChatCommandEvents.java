@@ -2,6 +2,7 @@ package me.rosykk.Events;
 
 import me.rosykk.Main;
 import me.rosykk.Utils.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,9 +20,10 @@ public class ChatCommandEvents implements Listener {
         this.plugin = plugin;
     }
 
-    // Just in case it was needed, useless for now.
     @EventHandler
     public void chatRestriction(PlayerCommandPreprocessEvent event) {
+
+        // Just in case, useless for now
         List<String> commands = Arrays.asList(
                 "/day", "/bc",
                 "/night", "/ban-ip",
@@ -43,5 +45,10 @@ public class ChatCommandEvents implements Listener {
 
         event.setFormat(Util.colorize(player.getName() + " &7» &r" + message.replace("%", "%%")));
 
+        if (message.toLowerCase().startsWith("negr")) {
+            for(Player p : Bukkit.getOnlinePlayers()) {
+                p.sendTitle(Util.colorize("&a" + player.getName() + " says:"), "Negr", 20, 100, 20);
+            }
+        }
     }
 }

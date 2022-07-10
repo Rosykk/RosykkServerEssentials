@@ -7,24 +7,21 @@ import me.rosykk.Config.*;
 
 public class CustomCraftings
 {
-    private static final Main plugin;
+    private static final Main plugin = Main.getInstance();
 
     private static void addLightBlock() {
-        final ItemStack itemStack = new ItemStack(Material.LIGHT, 2);
-        final ShapelessRecipe shapelessRecipe = new ShapelessRecipe(NamespacedKey.minecraft("light"), itemStack);
+        ItemStack itemStack = new ItemStack(Material.LIGHT, 2);
+        ShapelessRecipe shapelessRecipe = new ShapelessRecipe(NamespacedKey.minecraft("light"), itemStack);
+
         shapelessRecipe.addIngredient(2, Material.TORCH);
         shapelessRecipe.addIngredient(2, Material.IRON_NUGGET);
-        CustomCraftings.plugin.getServer().addRecipe((Recipe)shapelessRecipe);
+
+        CustomCraftings.plugin.getServer().addRecipe(shapelessRecipe);
     }
 
     public static void initialize() {
-        final Config config = CustomCraftings.plugin.getCfg();
-        if (config.getBoolean("LIGHT_CRAFTING")) {
-            addLightBlock();
-        }
-    }
+        Config config = CustomCraftings.plugin.getCfg();
 
-    static {
-        plugin = Main.getInstance();
+        if (config.getBoolean("LIGHT_CRAFTING")) addLightBlock();
     }
 }

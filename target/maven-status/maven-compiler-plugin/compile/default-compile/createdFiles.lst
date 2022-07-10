@@ -1,15 +1,16 @@
 me\rosykk\Events\LightBreakEvent.class
 me\rosykk\CustomItems\CustomCraftings.class
-me\rosykk\Commands\RefworldCommand.class
 me\rosykk\Commands\RemoveCommand.class
 me\rosykk\Config\Config.class
 me\rosykk\Enums\State.class
 me\rosykk\Utils\Util.class
 me\rosykk\Enums\State$Type.class
 me\rosykk\Events\ChatCommandEvents.class
+me\rosykk\Events\LightBreakEvent$1.class
 me\rosykk\Commands\ReloadCommand.class
 me\rosykk\WorldGuardAPI\RegionChecks.class
 me\rosykk\Utils\CommandAPI\BukkitCommand.class
+me\rosykk\Commands\RcoreCommand.class
 me\rosykk\Utils\CommandAPI\CommandFramework.class
 me\rosykk\Events\BedEnterLeaveEvent.class
 me\rosykk\Utils\CommandAPI\BaseCommand.class

@@ -20,12 +20,12 @@ public class EnableDropEvent implements Listener {
 
     private final Main plugin;
 
-    public EnableDropEvent(final Main plugin) {
+    public EnableDropEvent(Main plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onPlayerInteract(final PlayerInteractEvent event) {
+    public void onPlayerInteract(PlayerInteractEvent event) {
 
         Player player = event.getPlayer();
         Action action = event.getAction();
@@ -33,24 +33,28 @@ public class EnableDropEvent implements Listener {
         if (event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.LEVER && action == Action.RIGHT_CLICK_BLOCK) {
 
             ApplicableRegionSet set = this.plugin.getChecks().isInRegion(event.getClickedBlock());
-            final State state = this.plugin.getState();
-            final State.Type type = this.plugin.getState().getType();
-            final FileConfiguration config = this.plugin.getConfig();
+            State state = this.plugin.getState();
+            State.Type type = this.plugin.getState().getType();
+            FileConfiguration config = this.plugin.getConfig();
 
-            for (final ProtectedRegion region : set) {
+            for (ProtectedRegion region : set) {
                 if (region.getId().equals(config.getString("REGION_NAME"))) {
                     switch (type) {
                         case NONE -> {
                             state.setType(State.Type.DROP);
+
                             Holograms.removeHologram();
                             Holograms.createHologram("&a\u2714", event.getClickedBlock().getLocation(), player);
+
                             player.sendMessage(Util.colorize(config.getString("DROPS_ACTIVE")));
                         }
                         case DROP -> {
                             state.setType(State.Type.NONE);
-                            player.sendMessage(Util.colorize(config.getString("DROPS_INACTIVE")));
+
                             Holograms.removeHologram();
                             Holograms.createHologram("&c\u2716", event.getClickedBlock().getLocation(), player);
+
+                            player.sendMessage(Util.colorize(config.getString("DROPS_INACTIVE")));
                         }
                     }
                 }
@@ -62,11 +66,9 @@ public class EnableDropEvent implements Listener {
     @EventHandler
     public void onLeverBreak(BlockBreakEvent event) {
 
-        Player player = event.getPlayer();
         Block block = event.getBlock();
 
         FileConfiguration config = this.plugin.getConfig();
-
         ApplicableRegionSet set = this.plugin.getChecks().isInRegion(block);
 
         for (ProtectedRegion region : set) {

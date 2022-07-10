@@ -12,6 +12,7 @@ public class RemoveCommand extends BaseCommand
         Player player = args.getPlayer();
 
         Region region = new Region();
+
         region.removeRegion(player);
     }
 }

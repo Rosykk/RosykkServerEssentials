@@ -19,12 +19,11 @@ import com.sk89q.worldguard.protection.flags.registry.*;
 public class Region
 {
     private static final Main plugin;
-    private final WorldGuard worldGuard;
     private final RegionContainer container;
 
     public Region() {
-        this.worldGuard = Region.plugin.getWorldGuard();
-        this.container = this.worldGuard.getPlatform().getRegionContainer();
+        WorldGuard worldGuard = Region.plugin.getWorldGuard();
+        this.container = worldGuard.getPlatform().getRegionContainer();
     }
 
     public void removeRegion(final Player player) {
@@ -38,6 +37,7 @@ public class Region
             player.sendMessage(Util.colorize("&cNeexistuje zadny region k odstraneni!"));
             return;
         }
+
         regionManager.removeRegion(config.getString("REGION_NAME"));
         player.sendMessage(Util.colorize("&aRegion &2" + regionName + " &aodstranen!"));
     }
@@ -71,18 +71,18 @@ public class Region
         regionManager.addRegion(region);
         DefaultDomain owners = new DefaultDomain();
         owners.addPlayer(player.toString());
-        region.setOwners(owners);
 
         final FlagRegistry flagRegistry = worldGuard.getFlagRegistry();
         for (int i = 0; i < flagRegistry.size(); ++i) {
-            final Flag<?> flag = (Flag<?>)flagRegistry.getAll().get(i);
+            final Flag<?> flag = flagRegistry.getAll().get(i);
             if (flag.hasConflictStrategy()) {
-                final StateFlag stateFlag = (StateFlag)flag;
-                region.setFlag((Flag)stateFlag, (Object)StateFlag.State.ALLOW);
+                final StateFlag stateFlag = (StateFlag) flag;
+                region.setFlag(stateFlag, StateFlag.State.ALLOW);
             }
         }
 
-        region.setFlag((Flag)Flags.BLOCK_PLACE, (Object)StateFlag.State.DENY);
+        region.setFlag(Flags.BLOCK_PLACE, StateFlag.State.DENY);
+        region.setFlag(Flags.PVP, StateFlag.State.ALLOW);
 
         try {
             regionManager.save();

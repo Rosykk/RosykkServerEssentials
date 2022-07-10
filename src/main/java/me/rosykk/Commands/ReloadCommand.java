@@ -9,17 +9,15 @@ import me.rosykk.Utils.CommandAPI.*;
 
 public class ReloadCommand extends BaseCommand
 {
-    private static final Main plugin;
+    private static final Main plugin = Main.getInstance();;
 
     @Command(name = "rcore.reload", inGameOnly = false, isAdminOnly = true)
     @Override
     public void onCommand(final CommandArgs args) {
-        final CommandSender sender = args.getSender();
-        ConfigManager.reloadConfig();
-        sender.sendMessage(Util.colorize(ReloadCommand.plugin.getCfg().getString("MESSAGE_RELOAD")));
-    }
+        CommandSender sender = args.getSender();
 
-    static {
-        plugin = Main.getInstance();
+        ConfigManager.reloadConfig();
+
+        sender.sendMessage(Util.colorize(plugin.getCfg().getString("MESSAGE_RELOAD")));
     }
 }

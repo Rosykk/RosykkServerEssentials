@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RosykkServerEssentials" target="17" />
+      <module name="RosykkServerEssentials" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>
